@@ -1,16 +1,15 @@
 import streamlit as st
 import numpy as np
-import pickle
+# import pickle
+import joblib
 
 st.set_page_config(page_title="Heart Disease Predictor", page_icon="❤️")
 
 # Load model & scaler
 @st.cache_resource
 def load():
-    with open("heart_model.pkl", "rb") as f:
-        model = pickle.load(f)
-    with open("scaler1.pkl", "rb") as f:
-        scaler = pickle.load(f)
+    model = joblib.load("heart_model.pkl")
+    scaler = joblib.load("scaler1.pkl")
     return model, scaler
 
 model, scaler = load()
@@ -87,9 +86,3 @@ with tab2:
 
     st.image("shap_summary.png")
     st.image("shap_waterfall.png")
-
-try:
-    with open("heart_model.pkl", "rb") as f:
-        model = pickle.load(f)
-except ModuleNotFoundError as e:
-    print("Missing module:", e.name)
