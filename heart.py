@@ -4,7 +4,6 @@ import numpy as np
 import joblib
 
 st.set_page_config(page_title="Heart Disease Predictor", page_icon="❤️")
-st.write("hello")
 # Load model & scaler
 @st.cache_resource
 def load():
